@@ -6,7 +6,7 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
   const Nav = () =>{
      const navigate = useNavigate();
     return(
-          <nav className=" flex-row flex  bg-[#000] text-[#fff] h-[90px] p-6 justify-between">
+          <nav className=" flex-row flex bg-[url(./assest/images.jpg)] h-40 text-[Red]  p-10 justify-between">
              <div className="flex flex-row gap-4">  <LiveTvIcon></LiveTvIcon>
                    <div onClick={()=>navigate("/")} className="text-[30px] relative bottom-2 cursor-pointer " >OMDb Movie
                    </div>
