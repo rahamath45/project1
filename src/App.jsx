@@ -12,7 +12,7 @@ function App() {
    <>
            <Nav/>
            <Routes>
-              
+             
              <Route exact path="/" element={<Research/>} />
             <Route path="/movie/:id" element={<Details/>} />
           </Routes>

@@ -29,32 +29,32 @@ import { API_KEY, REST_HOST_API } from "../backend";
 
     return(
         <>
-             <div  className="h-[1000px]  bg-linear-to-tl from-orange-900 to-[Red] inset-shadow-sm inset-shadow-orange-900/50 ">
-            <form  className="flex p-[2rem] gap-[2rem] justify-center"onSubmit={e =>{
+             <div  className=" lg:h-[1000px]  bg-linear-to-tl from-orange-900 to-[Red] inset-shadow-sm inset-shadow-orange-900/50 ">
+            <form  className="flex p-[2rem] lg:gap-[2rem] justify-center sm: flex gap-[2px]"onSubmit={e =>{
                 e.preventDefault();
                 setParams({q:e.target.q.value,page:"1",type})
             }}>
-                <input className="w-[600px] p-1 rounded-md bg-[#fff] shadow-lg shadow-orange-900/90" name="q" defaultValue={q} placeholder="Search Your Favourite..." type="search"/>
+                <input className="w-[600px] p-1 rounded-md bg-[#fff] shadow-lg shadow-orange-900/90 " name="q" defaultValue={q} placeholder="Search Your Favourite..." type="search"/>
                 <select className="w-[150px] bg-[#fff] rounded-lg" value={type} onChange={e => setParams({q,page:"1",type:e.target.value})}>
                  <option value="movie">Movie</option>
                  <option value="series">Series</option>
                  <option value="episode">Episode</option>
                 </select>
-                <button className="p-2 w-[100px] bg-[#000] text-[#FF0000] rounded-md">Search</button>
+                <button className="lg:p-2 w-[100px] bg-[#000] text-[#FF0000] rounded-md">Search</button>
             </form>
-            <div className="grid grid-cols-6 m-6 gap-5 mt-[1rem] shadow-lg shadow-orange-900/90">
+            <div className=" lg:grid grid-cols-6 m-6 gap-5 mt-[1rem] shadow-lg shadow-orange-900/90  ">
                {data.map(m => (
                 <div key={m.imdbID} onClick={()=>navigate(`/movie/${m.imdbID}`)} style={{textAlign:"center",cursor:"pointer"}}>
-                    <img  className="w-[220px] object-contain"src={m.Poster ? m.Poster : "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"}/>
-                    <p>{m.Title}({m.Year})</p>
+                    <img  className=" object-cover lg:w-[200px] lg:h-[280px] "src={m.Poster == "N/A" ?  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcCBHgbS23kyBw2r8Pquu19UtKZnrZmFUx1g&s" : m.Poster }/>
+                    <p className=" lg:text-[15px] font-bold sm:text-[10px]">{m.Title}({m.Year})</p>
                 </div>
                ))}
             </div>
              {total >10 && (
-                <div className="mt-[1rem]">
-                    <button disabled={page<=1} onClick={()=>setParams({q,type,page:page-1})}>Previous </button> 
-                    <span> page{page} </span>
-                    <button disabled={page>= Math.ceil(total/10)} onClick={()=>setParams({q,type,page:page+1})}>Next</button>
+                <div className="mt-[1rem] text-center">
+                    <button className="p-2 w-[100px] bg-[#000] text-[#FF0000] rounded-md" disabled={page<=1} onClick={()=>setParams({q,type,page:page-1})} >Previous </button> 
+                    <span className="font-bold m-2"> page{page} </span>
+                    <button className="p-2 w-[100px] bg-[#000] text-[#FF0000] rounded-md"  disabled={page>= Math.ceil(total/10)} onClick={()=>setParams({q,type,page:page+1})}>Next</button>
                 </div>
              )}
 
